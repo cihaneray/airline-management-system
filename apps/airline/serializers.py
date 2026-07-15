@@ -3,7 +3,8 @@ from datetime import timedelta, datetime
 from django.utils import timezone
 from rest_framework import serializers
 
-from models import Airplane, Flight
+from models import Airplane, Flight, Reservation
+from services import create_reservation
 
 
 class AirplaneSerializer(serializers.ModelSerializer):
@@ -124,3 +125,59 @@ class FlightSerializer(serializers.ModelSerializer):
             )
 
         return attrs
+
+
+class ReservationSerializer(serializers.ModelSerializer):
+    reservation_code: str = serializers.CharField(read_only=True)
+    created_at: datetime = serializers.DateTimeField(read_only=True)
+
+    class Meta:
+        model = Reservation
+        fields = [
+            'id',
+            'passenger_name',
+            'passenger_email',
+            'reservation_code',
+            'flight',
+            'status',
+            'created_at',
+        ]
+        read_only_fields = [
+            'reservation_code',
+            'created_at',
+        ]
+
+    def validate_flight(self, flight: Flight):
+        if flight.departure_time <= timezone.now():
+            raise serializers.ValidationError(
+                'A reservation cannot be created for a departed flight.'
+            )
+
+        return flight
+
+    def validate(self, attrs):
+        request = self.context.get('request')
+
+        if request and request.method == 'POST':
+            flight: Flight = attrs.get('flight')
+            passenger_email: str = attrs.get('passenger_email')
+
+            duplicate_exists = Reservation.objects.filter(
+                flight=flight,
+                passenger_email__iexact=passenger_email,
+                status=True,
+            ).exists()
+
+            if duplicate_exists:
+                raise serializers.ValidationError(
+                    {
+                        'passenger_email': (
+                            'This passenger already has an active reservation for this flight.'
+                        )
+                    }
+                )
+
+        return attrs
+
+    def create(self, validated_data):
+        return create_reservation(validated_data=validated_data)

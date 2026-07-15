@@ -3,8 +3,8 @@ from datetime import timedelta, datetime
 from django.utils import timezone
 from rest_framework import serializers
 
-from models import Airplane, Flight, Reservation
-from services import create_reservation
+from .models import Airplane, Flight, Reservation
+from .services import create_reservation
 
 
 class AirplaneSerializer(serializers.ModelSerializer):

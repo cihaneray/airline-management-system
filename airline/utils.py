@@ -1,7 +1,7 @@
 import secrets
 import string
 
-from models import Reservation
+from .models import Reservation
 
 ALPHANUMERIC: str = string.ascii_uppercase + string.digits
 

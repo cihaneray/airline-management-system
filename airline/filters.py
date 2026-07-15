@@ -1,6 +1,6 @@
 import django_filters
 
-from models import Flight
+from .models import Flight
 
 
 class FlightFilter(django_filters.FilterSet):

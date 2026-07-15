@@ -1,8 +1,8 @@
 from django.db import transaction
 from rest_framework.exceptions import ValidationError
 
-from models import Flight, Reservation
-from utils import generate_unique_reservation_code
+from .models import Flight, Reservation
+from .utils import generate_unique_reservation_code
 
 
 @transaction.atomic

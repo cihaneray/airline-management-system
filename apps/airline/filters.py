@@ -1,0 +1,2 @@
+class FlightFilter:
+    pass

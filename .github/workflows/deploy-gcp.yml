@@ -77,8 +77,6 @@ jobs:
           
           printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          echo "Host $VM_HOST"
-          echo "$SSH_PRIVATE_KEY"
           
           ssh-keyscan -H "$VM_HOST" >> ~/.ssh/known_hosts
 

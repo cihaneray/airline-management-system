@@ -45,7 +45,7 @@ COPY --from=builder /opt/venv /opt/venv
 
 COPY --chown=django:django . /app
 
-RUN chmod +x /app/scripts/entrypoints.sh \
+RUN chmod +x /app/scripts/entrypoint.sh \
     && mkdir -p /app/staticfiles /app/media \
     && chown -R django:django /app
 
@@ -53,6 +53,6 @@ USER django
 
 EXPOSE 8000
 
-ENTRYPOINT ["/app/scripts/entrypoints.sh"]
+ENTRYPOINT ["/app/scripts/entrypoint.sh"]
 
 CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3", "--threads", "2", "--timeout", "60", "--access-logfile", "-", "--error-logfile", "-"]

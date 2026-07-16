@@ -2,7 +2,12 @@ from datetime import datetime
 
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from django.db.models import F, Q
 from django.utils import timezone
+
+
+def current_year() -> int:
+    return timezone.now().year
 
 
 class Airplane(models.Model):
@@ -14,7 +19,7 @@ class Airplane(models.Model):
     production_year: int = models.PositiveIntegerField(
         validators=[
             MinValueValidator(1900),
-            MaxValueValidator(timezone.now().year)
+            MaxValueValidator(current_year())
         ]
     )
     status: bool = models.BooleanField(default=True)
@@ -27,7 +32,7 @@ class Airplane(models.Model):
 
 
 class Flight(models.Model):
-    flight_number: str = models.CharField(max_length=20, unique=True)  # Check after wrote the function of flight number
+    flight_number: str = models.CharField(max_length=20, unique=True)
     departure: str = models.CharField(max_length=150)
     destination: str = models.CharField(max_length=150)
     departure_time: datetime = models.DateTimeField()
@@ -41,9 +46,13 @@ class Flight(models.Model):
 
     class Meta:
         ordering: list[str] = ['departure_time']
+        constraints = [
+            models.CheckConstraint(
+                condition=Q(arrival_time__gt=F('departure_time')),
+                name='flight_arrival_after_departure'
+            )
+        ]
         indexes: list[models.Index] = [
-            models.Index(fields=['departure']),
-            models.Index(fields=['destination']),
             models.Index(fields=['departure_time']),
             models.Index(fields=['airplane', 'departure_time']),
         ]

@@ -339,22 +339,23 @@ def create_reservation(*, validated_data: dict[str, Any]) -> Reservation:
     reservation_data.pop('reservation_code', None)
     reservation_data.pop('created_at', None)
 
+    last_error = None
     for _ in range(RESERVATION_CODE_ATTEMPTS):
-        reservation_data['reservation_code'] = generate_reservation_code()
-        # TODO: Use more reliable method to generate unique reservation code.
-
         try:
-            return Reservation.objects.create(**reservation_data)
-        except IntegrityError:
-            continue
-
-        return reservation
+            # Atomic block to create a savepoint.
+            with transaction.atomic():
+                return Reservation.objects.create(
+                    **reservation_data,
+                    reservation_code=generate_reservation_code(length=RESERVATION_CODE_LENGTH)
+                )
+        except IntegrityError as exc:
+            last_error = exc
 
     raise ValidationError(
         {
             'reservation_code': 'A unique reservation code could not be generated. Please try again.'
         }
-    )
+    ) from last_error
 
 
 @transaction.atomic

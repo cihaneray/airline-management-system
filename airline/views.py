@@ -1,4 +1,4 @@
-from django.db.models import Count, F, Q
+from django.db.models import Count, Q, Model
 from django.db.models.deletion import ProtectedError
 from django.utils import timezone
 from django_filters.rest_framework import DjangoFilterBackend
@@ -7,8 +7,10 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from .models import Airplane, Flight, Reservation
+from .filters import FlightFilter
+from .models import Airplane, Reservation, Flight
 from .serializers import AirplaneSerializer, FlightSerializer, ReservationSerializer
+from .services import cancel_reservation
 
 
 class AirplaneViewSet(viewsets.ModelViewSet):
@@ -176,12 +178,12 @@ class FlightViewSet(viewsets.ModelViewSet):
     API endpoints for managing flights.
 
     Endpoints:
-        GET     /api/flights
-        POST    /api/flights
-        GET     /api/flights/{id}
-        PATCH   /api/flights/{id}
-        DELETE  /api/flights/{id}
-        GET     /api/flights/{id}/reservations
+        GET     /api/flights/
+        POST    /api/flights/
+        GET     /api/flights/{id}/
+        PATCH   /api/flights/{id}/
+        DELETE  /api/flights/{id}/
+        GET     /api/flights/{id}/reservations/
     """
 
     serializer_class = FlightSerializer
@@ -192,13 +194,8 @@ class FlightViewSet(viewsets.ModelViewSet):
         filters.OrderingFilter,
         filters.SearchFilter,
     ]
-    filterset_fields = {
-        'airplane': ['exact'],
-        'departure': ['exact', 'icontains'],
-        'destination': ['exact', 'icontains'],
-        'departure_time': ['exact', 'date', 'gte', 'lte'],
-        'arrival_time': ['exact', 'date', 'gte', 'lte'],
-    }
+
+    filterset_class = FlightFilter
 
     search_fields = [
         'flight_number',
@@ -221,34 +218,19 @@ class FlightViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         """
-        Use select_related for the airplane foreign key and annotate the number of active reservations.
-
-        Query parameters:
-            upcoming=true
-            past=true
-            available=true
+        Return flights with their airplane and active reservation count.
         """
-        queryset = Flight.objects.select_related('airplane').annotate(
-            active_reservation_count=Count(
-                'reservations',
-                filter=Q(reservations__status=True),
+        return (
+            Flight.objects
+            .select_related('airplane')
+            .annotate(
+                active_reservation_count=Count(
+                    'reservations',
+                    filter=Q(reservations__status=True),
+                )
             )
+            .order_by('departure_time')
         )
-
-        upcoming = self.request.query_params.get('upcoming')
-        past = self.request.query_params.get('past')
-        available = self.request.query_params.get('available')
-
-        if upcoming and upcoming.lower() == 'true':
-            queryset = queryset.filter(departure_time__gte=timezone.now())
-
-        if past and past.lower() == 'true':
-            queryset = queryset.filter(departure_time__lt=timezone.now())
-
-        if available and available.lower() == 'true':
-            queryset = queryset.filter(active_reservation_count__lt=F('airplane__capacity'))
-
-        return queryset.order_by('departure_time')
 
     @action(detail=True, methods=['get'], url_path='reservations')
     def reservations(self, request, pk=None):
@@ -330,16 +312,7 @@ class FlightViewSet(viewsets.ModelViewSet):
         Endpoint:
             GET /api/flights/{id}/availability
         """
-        flight = (
-            Flight.objects
-            .select_related('airplane')
-            .annotate(
-                active_reservation_count=Count(
-                    'reservations',
-                    filter=Q(reservations__status=True),
-                )
-            ).get(pk=self.get_object().pk)
-        )
+        flight = self.get_object()
 
         capacity = flight.airplane.capacity
         occupied_seats = flight.active_reservation_count
@@ -387,10 +360,10 @@ class ReservationViewSet(
     API endpoints for managing reservations.
 
     Endpoints:
-        GET     /api/reservations
-        POST    /api/reservations
-        GET     /api/reservations/{id}
-        PATCH   /api/reservations/{id}
+        GET     /api/reservations/
+        POST    /api/reservations/
+        GET     /api/reservations/{id}/
+        PATCH   /api/reservations/{id}/
     """
 
     serializer_class = ReservationSerializer
@@ -441,16 +414,9 @@ class ReservationViewSet(
         Endpoint:
             PATCH /api/reservations/{id}/cancel
         """
-        reservation = self.get_object()
-
-        if not reservation.status:
-            return Response(
-                {'detail': 'Reservation is already cancelled.'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-
-        reservation.status = False
-        reservation.save(update_fields=['status'])
+        reservation = cancel_reservation(
+            reservation=self.get_object()
+        )
 
         serializer = self.get_serializer(reservation)
 

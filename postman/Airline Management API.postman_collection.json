@@ -1,0 +1,703 @@
+{
+  "info": {
+    "_postman_id": "e76b6cf0-e127-4a25-a23f-airline000001",
+    "name": "Airline Management API",
+    "description": "JWT-authenticated Postman collection for the Django DRF Airline Management API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{access_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Obtain JWT Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/token/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "token"
+              ]
+            },
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"{{password}}\"\n}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "const data = pm.response.json();",
+                  "pm.environment.set(\"access_token\", data.access);",
+                  "pm.environment.set(\"refresh_token\", data.refresh);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Refresh JWT Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/token/refresh/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "token",
+                "refresh"
+              ]
+            },
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refresh\": \"{{refresh_token}}\"\n}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "const data = pm.response.json();",
+                  "pm.environment.set(\"access_token\", data.access);",
+                  "if (data.refresh) {",
+                  "    pm.environment.set(\"refresh_token\", data.refresh);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Airplanes",
+      "item": [
+        {
+          "name": "List Airplanes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/airplanes/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "airplanes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Airplane",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/airplanes/{{airplane_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "airplanes",
+                "{{airplane_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Airplane Flights",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/airplanes/{{airplane_id}}/flights/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "airplanes",
+                "{{airplane_id}}",
+                "flights"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Airplane",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/airplanes/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "airplanes"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tail_number\": \"TC-PST\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 180,\n  \"production_year\": 2020,\n  \"status\": true\n}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "const data = pm.response.json();",
+                  "pm.environment.set(\"airplane_id\", data.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Update Airplane",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/airplanes/{{airplane_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "airplanes",
+                "{{airplane_id}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": true\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Airplane",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/airplanes/{{airplane_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "airplanes",
+                "{{airplane_id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Flights",
+      "item": [
+        {
+          "name": "List Flights",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/flights/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "flights"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Flight",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/flights/{{flight_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "flights",
+                "{{flight_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Flight Reservations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/flights/{{flight_id}}/reservations/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "flights",
+                "{{flight_id}}",
+                "reservations"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Flight Availability",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/flights/{{flight_id}}/availability/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "flights",
+                "{{flight_id}}",
+                "availability"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Flight",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/flights/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "flights"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"flight_number\": \"TK9001\",\n  \"departure\": \"Istanbul Airport\",\n  \"destination\": \"Heathrow Airport\",\n  \"departure_time\": \"2027-08-10T10:00:00+03:00\",\n  \"arrival_time\": \"2027-08-10T14:00:00+03:00\",\n  \"airplane\": \"{{airplane_id}}\"\n}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "const data = pm.response.json();",
+                  "pm.environment.set(\"flight_id\", data.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Update Flight",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/flights/{{flight_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "flights",
+                "{{flight_id}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"destination\": \"Paris Charles de Gaulle Airport\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filter Flights",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/flights/?departure__icontains=istanbul&ordering=departure_time",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "flights",
+                "?departure__icontains=istanbul&ordering=departure_time"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Flight",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/flights/{{flight_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "flights",
+                "{{flight_id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Reservations",
+      "item": [
+        {
+          "name": "List Reservations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/reservations/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "reservations"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Reservation",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/reservations/{{reservation_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "reservations",
+                "{{reservation_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Reservation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/reservations/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "reservations"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"passenger_name\": \"Ayse Yilmaz\",\n  \"passenger_email\": \"ayse@example.com\",\n  \"flight\": \"{{flight_id}}\",\n  \"status\": true\n}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "const data = pm.response.json();",
+                  "pm.environment.set(\"reservation_id\", data.id);",
+                  "pm.test(\"Reservation code generated\", function () {",
+                  "    pm.expect(data.reservation_code).to.match(/^[A-Z0-9]{5,}$/);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Update Reservation",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/reservations/{{reservation_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "reservations",
+                "{{reservation_id}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"passenger_name\": \"Ayse Yilmaz Updated\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Cancel Reservation",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/reservations/{{reservation_id}}/cancel/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "reservations",
+                "{{reservation_id}}",
+                "cancel"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Negative Scenarios",
+      "item": [
+        {
+          "name": "Unauthorized Airplane List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/airplanes/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "airplanes"
+              ]
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Invalid Flight Time",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/flights/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "flights"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"flight_number\": \"TK-BAD-TIME\",\n  \"departure\": \"Istanbul Airport\",\n  \"destination\": \"Heathrow Airport\",\n  \"departure_time\": \"2027-08-10T14:00:00+03:00\",\n  \"arrival_time\": \"2027-08-10T10:00:00+03:00\",\n  \"airplane\": \"{{airplane_id}}\"\n}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Duplicate Reservation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/reservations/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "reservations"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"passenger_name\": \"Ayse Yilmaz\",\n  \"passenger_email\": \"ayse@example.com\",\n  \"flight\": \"{{flight_id}}\",\n  \"status\": true\n}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -85,7 +85,7 @@ jobs:
           VM_HOST: ${{ secrets.GCP_VM_HOST }}
           VM_USER: ${{ secrets.GCP_VM_USER }}
         run: |
-          ssh -i ~/.ssh/deploy_key "$VM_USER"@"$VM_HOST" "mkdir -p /opt/airline/config"
+          ssh -i ~/.ssh/deploy_key "$VM_USER"@"$VM_HOST" "sudo mkdir -p /opt/airline/config /opt/airline/nginx && sudo chown -R $VM_USER:$VM_USER /opt/airline"
           scp -i ~/.ssh/deploy_key compose.prod.yaml "$VM_USER"@"$VM_HOST":/opt/airline/compose.prod.yaml
           scp -i ~/.ssh/deploy_key nginx/default.conf "$VM_USER"@"$VM_HOST":/opt/airline/nginx/default.conf
 

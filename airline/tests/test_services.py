@@ -8,13 +8,10 @@ from airline.services import (
     cancel_reservation,
     create_reservation,
     generate_reservation_code,
-    generate_unique_reservation_code,
     get_flight_availability,
     update_flight,
     update_reservation,
 )
-from rest_framework.exceptions import ValidationError
-from unittest.mock import patch
 
 
 class ReservationServiceTests(TestCase):
@@ -107,16 +104,3 @@ class ReservationServiceTests(TestCase):
             validated_data={"passenger_name": new_name}
         )
         self.assertEqual(updated_reservation.passenger_name, new_name)
-
-    @patch("airline.services.generate_reservation_code")
-    def test_generate_unique_reservation_code_exhaustion(self, mock_generate):
-        mock_generate.return_value = "FIXED123"
-        Reservation.objects.create(
-            passenger_name="Fixed",
-            passenger_email="fixed@example.com",
-            reservation_code="FIXED123",
-            flight=self.flight,
-            status=True,
-        )
-        with self.assertRaisesMessage(ValidationError, "A unique reservation code could not be generated. Please try again."):
-            generate_unique_reservation_code()

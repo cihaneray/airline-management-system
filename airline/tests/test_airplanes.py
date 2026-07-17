@@ -1,11 +1,10 @@
 from datetime import timedelta
 
-from django.db.models.deletion import ProtectedError
 from django.urls import reverse
 from django.utils import timezone
 from rest_framework import status
 
-from airline.models import Airplane, Flight
+from airline.models import Airplane
 from airline.tests.base import AirlineAPITestCase
 
 

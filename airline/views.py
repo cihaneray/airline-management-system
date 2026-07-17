@@ -1,4 +1,4 @@
-from django.db.models import Count, Q, Model
+from django.db.models import Count, Q
 from django.db.models.deletion import ProtectedError
 from django.utils import timezone
 from django_filters.rest_framework import DjangoFilterBackend

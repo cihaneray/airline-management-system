@@ -1,11 +1,9 @@
-import re
 from datetime import timedelta
 
 from django.urls import reverse
 from django.utils import timezone
 from rest_framework import status
 
-from airline.models import Reservation
 from airline.tests.base import AirlineAPITestCase
 
 

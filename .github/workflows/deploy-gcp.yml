@@ -93,8 +93,8 @@ jobs:
         env:
           VM_HOST: ${{ secrets.GCP_VM_HOST }}
           VM_USER: ${{ secrets.GCP_VM_USER }}
-          GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-          GCP_REGION: ${{ secrets.GCP_REGION }}
+          GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+          GCP_REGION: ${{ vars.GCP_REGION }}
         run: |
           ssh -i ~/.ssh/deploy_key "$VM_USER"@"$VM_HOST" "GCP_PROJECT_ID='$GCP_PROJECT_ID' GCP_REGION='$GCP_REGION' IMAGE_TAG='$IMAGE_TAG' bash -s" <<'REMOTE'
           set -Eeuo pipefail
@@ -105,7 +105,7 @@ jobs:
           export GCP_REGION
           export IMAGE_TAG
           
-          gcloud auth configure-docker "$GCP_REGION"-docker.pkg.dev --quiet
+          gcloud auth configure-docker "${GCP_REGION}-docker.pkg.dev" --quiet
           
           docker compose --env-file .env -f compose.prod.yaml pull api
           

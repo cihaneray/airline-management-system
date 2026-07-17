@@ -79,7 +79,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tail_number\": \"TC-B01\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 151,\n  \"production_year\": 2016,\n  \"status\": true\n}"
+          "raw": "{\n  \"tail_number\": \"TC-{{$randomBankAccount}}\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 151,\n  \"production_year\": 2016,\n  \"status\": true\n}"
         }
       }
     },
@@ -108,7 +108,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"flight_number\": \"TK5001\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-02T11:00:00+03:00\",\n  \"arrival_time\": \"2027-10-02T14:00:00+03:00\",\n  \"airplane\": {{bulk_air_1}}\n}"
+          "raw": "{\n  \"flight_number\": \"TK{{$randomBankAccount}}\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-02T11:00:00+03:00\",\n  \"arrival_time\": \"2027-10-02T14:00:00+03:00\",\n  \"airplane\": {{bulk_air_1}}\n}"
         }
       }
     },
@@ -149,7 +149,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tail_number\": \"TC-B02\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 152,\n  \"production_year\": 2017,\n  \"status\": true\n}"
+          "raw": "{\n  \"tail_number\": \"TC-{{$randomBankAccount}}\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 152,\n  \"production_year\": 2017,\n  \"status\": true\n}"
         }
       }
     },
@@ -178,7 +178,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"flight_number\": \"TK5002\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-03T12:00:00+03:00\",\n  \"arrival_time\": \"2027-10-03T15:00:00+03:00\",\n  \"airplane\": {{bulk_air_2}}\n}"
+          "raw": "{\n  \"flight_number\": \"TK{{$randomBankAccount}}\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-03T12:00:00+03:00\",\n  \"arrival_time\": \"2027-10-03T15:00:00+03:00\",\n  \"airplane\": {{bulk_air_2}}\n}"
         }
       }
     },
@@ -219,7 +219,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tail_number\": \"TC-B03\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 153,\n  \"production_year\": 2018,\n  \"status\": true\n}"
+          "raw": "{\n  \"tail_number\": \"TC-{{$randomBankAccount}}\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 153,\n  \"production_year\": 2018,\n  \"status\": true\n}"
         }
       }
     },
@@ -248,7 +248,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"flight_number\": \"TK5003\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-04T13:00:00+03:00\",\n  \"arrival_time\": \"2027-10-04T16:00:00+03:00\",\n  \"airplane\": {{bulk_air_3}}\n}"
+          "raw": "{\n  \"flight_number\": \"TK{{$randomBankAccount}}\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-04T13:00:00+03:00\",\n  \"arrival_time\": \"2027-10-04T16:00:00+03:00\",\n  \"airplane\": {{bulk_air_3}}\n}"
         }
       }
     },
@@ -289,7 +289,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tail_number\": \"TC-B04\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 154,\n  \"production_year\": 2019,\n  \"status\": true\n}"
+          "raw": "{\n  \"tail_number\": \"TC-{{$randomBankAccount}}\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 154,\n  \"production_year\": 2019,\n  \"status\": true\n}"
         }
       }
     },
@@ -318,7 +318,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"flight_number\": \"TK5004\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-05T14:00:00+03:00\",\n  \"arrival_time\": \"2027-10-05T17:00:00+03:00\",\n  \"airplane\": {{bulk_air_4}}\n}"
+          "raw": "{\n  \"flight_number\": \"TK{{$randomBankAccount}}\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-05T14:00:00+03:00\",\n  \"arrival_time\": \"2027-10-05T17:00:00+03:00\",\n  \"airplane\": {{bulk_air_4}}\n}"
         }
       }
     },
@@ -359,7 +359,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tail_number\": \"TC-B05\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 155,\n  \"production_year\": 2020,\n  \"status\": true\n}"
+          "raw": "{\n  \"tail_number\": \"TC-{{$randomBankAccount}}\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 155,\n  \"production_year\": 2020,\n  \"status\": true\n}"
         }
       }
     },
@@ -388,7 +388,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"flight_number\": \"TK5005\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-06T10:00:00+03:00\",\n  \"arrival_time\": \"2027-10-06T13:00:00+03:00\",\n  \"airplane\": {{bulk_air_5}}\n}"
+          "raw": "{\n  \"flight_number\": \"TK{{$randomBankAccount}}\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-06T10:00:00+03:00\",\n  \"arrival_time\": \"2027-10-06T13:00:00+03:00\",\n  \"airplane\": {{bulk_air_5}}\n}"
         }
       }
     },
@@ -429,7 +429,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tail_number\": \"TC-B06\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 156,\n  \"production_year\": 2021,\n  \"status\": true\n}"
+          "raw": "{\n  \"tail_number\": \"TC-{{$randomBankAccount}}\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 156,\n  \"production_year\": 2021,\n  \"status\": true\n}"
         }
       }
     },
@@ -458,7 +458,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"flight_number\": \"TK5006\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-07T11:00:00+03:00\",\n  \"arrival_time\": \"2027-10-07T14:00:00+03:00\",\n  \"airplane\": {{bulk_air_6}}\n}"
+          "raw": "{\n  \"flight_number\": \"TK{{$randomBankAccount}}\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-07T11:00:00+03:00\",\n  \"arrival_time\": \"2027-10-07T14:00:00+03:00\",\n  \"airplane\": {{bulk_air_6}}\n}"
         }
       }
     },
@@ -499,7 +499,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tail_number\": \"TC-B07\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 157,\n  \"production_year\": 2022,\n  \"status\": true\n}"
+          "raw": "{\n  \"tail_number\": \"TC-{{$randomBankAccount}}\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 157,\n  \"production_year\": 2022,\n  \"status\": true\n}"
         }
       }
     },
@@ -528,7 +528,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"flight_number\": \"TK5007\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-08T12:00:00+03:00\",\n  \"arrival_time\": \"2027-10-08T15:00:00+03:00\",\n  \"airplane\": {{bulk_air_7}}\n}"
+          "raw": "{\n  \"flight_number\": \"TK{{$randomBankAccount}}\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-08T12:00:00+03:00\",\n  \"arrival_time\": \"2027-10-08T15:00:00+03:00\",\n  \"airplane\": {{bulk_air_7}}\n}"
         }
       }
     },
@@ -569,7 +569,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tail_number\": \"TC-B08\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 158,\n  \"production_year\": 2015,\n  \"status\": true\n}"
+          "raw": "{\n  \"tail_number\": \"TC-{{$randomBankAccount}}\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 158,\n  \"production_year\": 2015,\n  \"status\": true\n}"
         }
       }
     },
@@ -598,7 +598,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"flight_number\": \"TK5008\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-09T13:00:00+03:00\",\n  \"arrival_time\": \"2027-10-09T16:00:00+03:00\",\n  \"airplane\": {{bulk_air_8}}\n}"
+          "raw": "{\n  \"flight_number\": \"TK{{$randomBankAccount}}\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-09T13:00:00+03:00\",\n  \"arrival_time\": \"2027-10-09T16:00:00+03:00\",\n  \"airplane\": {{bulk_air_8}}\n}"
         }
       }
     },
@@ -639,7 +639,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tail_number\": \"TC-B09\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 159,\n  \"production_year\": 2016,\n  \"status\": true\n}"
+          "raw": "{\n  \"tail_number\": \"TC-{{$randomBankAccount}}\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 159,\n  \"production_year\": 2016,\n  \"status\": true\n}"
         }
       }
     },
@@ -668,7 +668,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"flight_number\": \"TK5009\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-10T14:00:00+03:00\",\n  \"arrival_time\": \"2027-10-10T17:00:00+03:00\",\n  \"airplane\": {{bulk_air_9}}\n}"
+          "raw": "{\n  \"flight_number\": \"TK{{$randomBankAccount}}\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-10T14:00:00+03:00\",\n  \"arrival_time\": \"2027-10-10T17:00:00+03:00\",\n  \"airplane\": {{bulk_air_9}}\n}"
         }
       }
     },
@@ -709,7 +709,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tail_number\": \"TC-B10\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 160,\n  \"production_year\": 2017,\n  \"status\": true\n}"
+          "raw": "{\n  \"tail_number\": \"TC-{{$randomBankAccount}}\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 160,\n  \"production_year\": 2017,\n  \"status\": true\n}"
         }
       }
     },
@@ -738,7 +738,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"flight_number\": \"TK5010\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-11T10:00:00+03:00\",\n  \"arrival_time\": \"2027-10-11T13:00:00+03:00\",\n  \"airplane\": {{bulk_air_10}}\n}"
+          "raw": "{\n  \"flight_number\": \"TK{{$randomBankAccount}}\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-11T10:00:00+03:00\",\n  \"arrival_time\": \"2027-10-11T13:00:00+03:00\",\n  \"airplane\": {{bulk_air_10}}\n}"
         }
       }
     },
@@ -779,7 +779,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tail_number\": \"TC-B11\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 161,\n  \"production_year\": 2018,\n  \"status\": true\n}"
+          "raw": "{\n  \"tail_number\": \"TC-{{$randomBankAccount}}\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 161,\n  \"production_year\": 2018,\n  \"status\": true\n}"
         }
       }
     },
@@ -808,7 +808,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"flight_number\": \"TK5011\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-12T11:00:00+03:00\",\n  \"arrival_time\": \"2027-10-12T14:00:00+03:00\",\n  \"airplane\": {{bulk_air_11}}\n}"
+          "raw": "{\n  \"flight_number\": \"TK{{$randomBankAccount}}\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-12T11:00:00+03:00\",\n  \"arrival_time\": \"2027-10-12T14:00:00+03:00\",\n  \"airplane\": {{bulk_air_11}}\n}"
         }
       }
     },
@@ -849,7 +849,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tail_number\": \"TC-B12\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 162,\n  \"production_year\": 2019,\n  \"status\": true\n}"
+          "raw": "{\n  \"tail_number\": \"TC-{{$randomBankAccount}}\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 162,\n  \"production_year\": 2019,\n  \"status\": true\n}"
         }
       }
     },
@@ -878,7 +878,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"flight_number\": \"TK5012\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-13T12:00:00+03:00\",\n  \"arrival_time\": \"2027-10-13T15:00:00+03:00\",\n  \"airplane\": {{bulk_air_12}}\n}"
+          "raw": "{\n  \"flight_number\": \"TK{{$randomBankAccount}}\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-13T12:00:00+03:00\",\n  \"arrival_time\": \"2027-10-13T15:00:00+03:00\",\n  \"airplane\": {{bulk_air_12}}\n}"
         }
       }
     },
@@ -919,7 +919,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tail_number\": \"TC-B13\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 163,\n  \"production_year\": 2020,\n  \"status\": true\n}"
+          "raw": "{\n  \"tail_number\": \"TC-{{$randomBankAccount}}\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 163,\n  \"production_year\": 2020,\n  \"status\": true\n}"
         }
       }
     },
@@ -948,7 +948,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"flight_number\": \"TK5013\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-14T13:00:00+03:00\",\n  \"arrival_time\": \"2027-10-14T16:00:00+03:00\",\n  \"airplane\": {{bulk_air_13}}\n}"
+          "raw": "{\n  \"flight_number\": \"TK{{$randomBankAccount}}\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-14T13:00:00+03:00\",\n  \"arrival_time\": \"2027-10-14T16:00:00+03:00\",\n  \"airplane\": {{bulk_air_13}}\n}"
         }
       }
     },
@@ -989,7 +989,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tail_number\": \"TC-B14\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 164,\n  \"production_year\": 2021,\n  \"status\": true\n}"
+          "raw": "{\n  \"tail_number\": \"TC-{{$randomBankAccount}}\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 164,\n  \"production_year\": 2021,\n  \"status\": true\n}"
         }
       }
     },
@@ -1018,7 +1018,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"flight_number\": \"TK5014\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-15T14:00:00+03:00\",\n  \"arrival_time\": \"2027-10-15T17:00:00+03:00\",\n  \"airplane\": {{bulk_air_14}}\n}"
+          "raw": "{\n  \"flight_number\": \"TK{{$randomBankAccount}}\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-15T14:00:00+03:00\",\n  \"arrival_time\": \"2027-10-15T17:00:00+03:00\",\n  \"airplane\": {{bulk_air_14}}\n}"
         }
       }
     },
@@ -1059,7 +1059,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tail_number\": \"TC-B15\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 165,\n  \"production_year\": 2022,\n  \"status\": true\n}"
+          "raw": "{\n  \"tail_number\": \"TC-{{$randomBankAccount}}\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 165,\n  \"production_year\": 2022,\n  \"status\": true\n}"
         }
       }
     },
@@ -1088,7 +1088,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"flight_number\": \"TK5015\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-16T10:00:00+03:00\",\n  \"arrival_time\": \"2027-10-16T13:00:00+03:00\",\n  \"airplane\": {{bulk_air_15}}\n}"
+          "raw": "{\n  \"flight_number\": \"TK{{$randomBankAccount}}\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-16T10:00:00+03:00\",\n  \"arrival_time\": \"2027-10-16T13:00:00+03:00\",\n  \"airplane\": {{bulk_air_15}}\n}"
         }
       }
     },
@@ -1129,7 +1129,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tail_number\": \"TC-B16\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 166,\n  \"production_year\": 2015,\n  \"status\": true\n}"
+          "raw": "{\n  \"tail_number\": \"TC-{{$randomBankAccount}}\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 166,\n  \"production_year\": 2015,\n  \"status\": true\n}"
         }
       }
     },
@@ -1158,7 +1158,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"flight_number\": \"TK5016\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-17T11:00:00+03:00\",\n  \"arrival_time\": \"2027-10-17T14:00:00+03:00\",\n  \"airplane\": {{bulk_air_16}}\n}"
+          "raw": "{\n  \"flight_number\": \"TK{{$randomBankAccount}}\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-17T11:00:00+03:00\",\n  \"arrival_time\": \"2027-10-17T14:00:00+03:00\",\n  \"airplane\": {{bulk_air_16}}\n}"
         }
       }
     },
@@ -1199,7 +1199,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tail_number\": \"TC-B17\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 167,\n  \"production_year\": 2016,\n  \"status\": true\n}"
+          "raw": "{\n  \"tail_number\": \"TC-{{$randomBankAccount}}\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 167,\n  \"production_year\": 2016,\n  \"status\": true\n}"
         }
       }
     },
@@ -1228,7 +1228,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"flight_number\": \"TK5017\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-18T12:00:00+03:00\",\n  \"arrival_time\": \"2027-10-18T15:00:00+03:00\",\n  \"airplane\": {{bulk_air_17}}\n}"
+          "raw": "{\n  \"flight_number\": \"TK{{$randomBankAccount}}\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-18T12:00:00+03:00\",\n  \"arrival_time\": \"2027-10-18T15:00:00+03:00\",\n  \"airplane\": {{bulk_air_17}}\n}"
         }
       }
     },
@@ -1269,7 +1269,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tail_number\": \"TC-B18\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 168,\n  \"production_year\": 2017,\n  \"status\": true\n}"
+          "raw": "{\n  \"tail_number\": \"TC-{{$randomBankAccount}}\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 168,\n  \"production_year\": 2017,\n  \"status\": true\n}"
         }
       }
     },
@@ -1298,7 +1298,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"flight_number\": \"TK5018\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-19T13:00:00+03:00\",\n  \"arrival_time\": \"2027-10-19T16:00:00+03:00\",\n  \"airplane\": {{bulk_air_18}}\n}"
+          "raw": "{\n  \"flight_number\": \"TK{{$randomBankAccount}}\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-19T13:00:00+03:00\",\n  \"arrival_time\": \"2027-10-19T16:00:00+03:00\",\n  \"airplane\": {{bulk_air_18}}\n}"
         }
       }
     },
@@ -1339,7 +1339,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tail_number\": \"TC-B19\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 169,\n  \"production_year\": 2018,\n  \"status\": true\n}"
+          "raw": "{\n  \"tail_number\": \"TC-{{$randomBankAccount}}\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 169,\n  \"production_year\": 2018,\n  \"status\": true\n}"
         }
       }
     },
@@ -1368,7 +1368,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"flight_number\": \"TK5019\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-20T14:00:00+03:00\",\n  \"arrival_time\": \"2027-10-20T17:00:00+03:00\",\n  \"airplane\": {{bulk_air_19}}\n}"
+          "raw": "{\n  \"flight_number\": \"TK{{$randomBankAccount}}\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-20T14:00:00+03:00\",\n  \"arrival_time\": \"2027-10-20T17:00:00+03:00\",\n  \"airplane\": {{bulk_air_19}}\n}"
         }
       }
     },
@@ -1409,7 +1409,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tail_number\": \"TC-B20\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 170,\n  \"production_year\": 2019,\n  \"status\": true\n}"
+          "raw": "{\n  \"tail_number\": \"TC-{{$randomBankAccount}}\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 170,\n  \"production_year\": 2019,\n  \"status\": true\n}"
         }
       }
     },
@@ -1438,7 +1438,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"flight_number\": \"TK5020\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-21T10:00:00+03:00\",\n  \"arrival_time\": \"2027-10-21T13:00:00+03:00\",\n  \"airplane\": {{bulk_air_20}}\n}"
+          "raw": "{\n  \"flight_number\": \"TK{{$randomBankAccount}}\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-21T10:00:00+03:00\",\n  \"arrival_time\": \"2027-10-21T13:00:00+03:00\",\n  \"airplane\": {{bulk_air_20}}\n}"
         }
       }
     },
@@ -1479,7 +1479,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tail_number\": \"TC-B21\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 171,\n  \"production_year\": 2020,\n  \"status\": true\n}"
+          "raw": "{\n  \"tail_number\": \"TC-{{$randomBankAccount}}\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 171,\n  \"production_year\": 2020,\n  \"status\": true\n}"
         }
       }
     },
@@ -1508,7 +1508,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"flight_number\": \"TK5021\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-22T11:00:00+03:00\",\n  \"arrival_time\": \"2027-10-22T14:00:00+03:00\",\n  \"airplane\": {{bulk_air_21}}\n}"
+          "raw": "{\n  \"flight_number\": \"TK{{$randomBankAccount}}\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-22T11:00:00+03:00\",\n  \"arrival_time\": \"2027-10-22T14:00:00+03:00\",\n  \"airplane\": {{bulk_air_21}}\n}"
         }
       }
     },
@@ -1549,7 +1549,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tail_number\": \"TC-B22\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 172,\n  \"production_year\": 2021,\n  \"status\": true\n}"
+          "raw": "{\n  \"tail_number\": \"TC-{{$randomBankAccount}}\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 172,\n  \"production_year\": 2021,\n  \"status\": true\n}"
         }
       }
     },
@@ -1578,7 +1578,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"flight_number\": \"TK5022\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-23T12:00:00+03:00\",\n  \"arrival_time\": \"2027-10-23T15:00:00+03:00\",\n  \"airplane\": {{bulk_air_22}}\n}"
+          "raw": "{\n  \"flight_number\": \"TK{{$randomBankAccount}}\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-23T12:00:00+03:00\",\n  \"arrival_time\": \"2027-10-23T15:00:00+03:00\",\n  \"airplane\": {{bulk_air_22}}\n}"
         }
       }
     },
@@ -1619,7 +1619,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tail_number\": \"TC-B23\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 173,\n  \"production_year\": 2022,\n  \"status\": true\n}"
+          "raw": "{\n  \"tail_number\": \"TC-{{$randomBankAccount}}\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 173,\n  \"production_year\": 2022,\n  \"status\": true\n}"
         }
       }
     },
@@ -1648,7 +1648,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"flight_number\": \"TK5023\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-24T13:00:00+03:00\",\n  \"arrival_time\": \"2027-10-24T16:00:00+03:00\",\n  \"airplane\": {{bulk_air_23}}\n}"
+          "raw": "{\n  \"flight_number\": \"TK{{$randomBankAccount}}\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-24T13:00:00+03:00\",\n  \"arrival_time\": \"2027-10-24T16:00:00+03:00\",\n  \"airplane\": {{bulk_air_23}}\n}"
         }
       }
     },
@@ -1689,7 +1689,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tail_number\": \"TC-B24\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 174,\n  \"production_year\": 2015,\n  \"status\": true\n}"
+          "raw": "{\n  \"tail_number\": \"TC-{{$randomBankAccount}}\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 174,\n  \"production_year\": 2015,\n  \"status\": true\n}"
         }
       }
     },
@@ -1718,7 +1718,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"flight_number\": \"TK5024\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-25T14:00:00+03:00\",\n  \"arrival_time\": \"2027-10-25T17:00:00+03:00\",\n  \"airplane\": {{bulk_air_24}}\n}"
+          "raw": "{\n  \"flight_number\": \"TK{{$randomBankAccount}}\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-25T14:00:00+03:00\",\n  \"arrival_time\": \"2027-10-25T17:00:00+03:00\",\n  \"airplane\": {{bulk_air_24}}\n}"
         }
       }
     },
@@ -1759,7 +1759,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"tail_number\": \"TC-B25\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 175,\n  \"production_year\": 2016,\n  \"status\": true\n}"
+          "raw": "{\n  \"tail_number\": \"TC-{{$randomBankAccount}}\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 175,\n  \"production_year\": 2016,\n  \"status\": true\n}"
         }
       }
     },
@@ -1788,7 +1788,7 @@
         },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"flight_number\": \"TK5025\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-26T10:00:00+03:00\",\n  \"arrival_time\": \"2027-10-26T13:00:00+03:00\",\n  \"airplane\": {{bulk_air_25}}\n}"
+          "raw": "{\n  \"flight_number\": \"TK{{$randomBankAccount}}\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-26T10:00:00+03:00\",\n  \"arrival_time\": \"2027-10-26T13:00:00+03:00\",\n  \"airplane\": {{bulk_air_25}}\n}"
         }
       }
     }

@@ -106,10 +106,6 @@ jobs:
           
           set -Eeuo pipefail
           
-          PROJECT_ID="$1"
-          REGION="$2"
-          export IMAGE_TAG="$3"
-          
           cd /opt/airline
           
           export GCP_PROJECT_ID

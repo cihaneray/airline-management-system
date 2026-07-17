@@ -95,11 +95,11 @@ airline-management/
 ## 1. Clone the repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/cihaneray/airline-management-system.git
 cd airline-management
 ```
 
-For a private repository, authenticate with GitHub before cloning.
+This is a private repository, authenticate with GitHub before cloning.
 
 ## 2. Create a virtual environment
 
@@ -164,8 +164,6 @@ POSTGRES_PASSWORD=replace-with-a-strong-password
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 ```
-
-Do not commit `.env` to Git.
 
 ---
 
@@ -602,7 +600,8 @@ Example response:
 {
   "flight_id": 1,
   "flight_number": "TK1901",
-  "airplane": "TC-NRT",
+  "airplane_id": 1,
+  "airplane_tail_number": "TC-NRT",
   "capacity": 180,
   "occupied_seats": 25,
   "available_seats": 155,
@@ -624,6 +623,9 @@ Supported query parameters:
 | `departure_date`      | Exact departure date                       |
 | `departure_date_from` | Departure datetime lower limit             |
 | `departure_date_to`   | Departure datetime upper limit             |
+| `arrival_date`        | Exact arrival date                         |
+| `arrival_date_from`   | Arrival datetime lower limit               |
+| `arrival_date_to`     | Arrival datetime upper limit               |
 | `upcoming`            | Future flights                             |
 | `past`                | Departed flights                           |
 | `available`           | Flights with remaining capacity            |
@@ -637,6 +639,7 @@ GET /api/flights/?airplane=1
 GET /api/flights/?departure_date=2027-08-10
 GET /api/flights/?departure_date_from=2027-08-01T00:00:00Z
 GET /api/flights/?departure_date_to=2027-08-31T23:59:59Z
+GET /api/flights/?arrival_date=2027-08-10
 GET /api/flights/?upcoming=true
 GET /api/flights/?past=true
 GET /api/flights/?available=true
@@ -976,9 +979,6 @@ POSTGRES_PORT=5432
 GCP_PROJECT_ID=your-google-cloud-project-id
 GCP_REGION=europe-west1
 ```
-
-The production `.env` file must not be committed to Git.
-
 ---
 
 # CI/CD
@@ -1147,23 +1147,6 @@ Verify:
 
 ---
 
-# Future Improvements
-
-Possible additions:
-
-- HTTPS and domain configuration
-- Google Cloud SQL
-- Reservation confirmation emails
-- Celery and Redis
-- User-owned reservations
-- Role-based permissions
-- Swagger or OpenAPI documentation
-- Monitoring and alerting
-- Automated database backups
-- Blue/green deployment
-
----
-
 # License
 
-This project is intended for educational and demonstration purposes.
+This repository has been developed as a Technical Case Study for an ongoing recruitment process.

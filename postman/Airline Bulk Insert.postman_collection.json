@@ -1,0 +1,1796 @@
+{
+  "info": {
+    "name": "Airline Bulk Insert Data",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "00 - Obtain Token",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('access_token', data.access);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/auth/token/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "auth",
+            "token/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"{{password}}\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Airplane 1 (TC-B01)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('bulk_air_1', data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/airplanes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "airplanes/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tail_number\": \"TC-B01\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 151,\n  \"production_year\": 2016,\n  \"status\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Flight 1 (TK5001)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/flights/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "flights/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"flight_number\": \"TK5001\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-02T11:00:00+03:00\",\n  \"arrival_time\": \"2027-10-02T14:00:00+03:00\",\n  \"airplane\": {{bulk_air_1}}\n}"
+        }
+      }
+    },
+    {
+      "name": "Airplane 2 (TC-B02)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('bulk_air_2', data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/airplanes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "airplanes/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tail_number\": \"TC-B02\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 152,\n  \"production_year\": 2017,\n  \"status\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Flight 2 (TK5002)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/flights/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "flights/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"flight_number\": \"TK5002\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-03T12:00:00+03:00\",\n  \"arrival_time\": \"2027-10-03T15:00:00+03:00\",\n  \"airplane\": {{bulk_air_2}}\n}"
+        }
+      }
+    },
+    {
+      "name": "Airplane 3 (TC-B03)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('bulk_air_3', data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/airplanes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "airplanes/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tail_number\": \"TC-B03\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 153,\n  \"production_year\": 2018,\n  \"status\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Flight 3 (TK5003)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/flights/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "flights/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"flight_number\": \"TK5003\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-04T13:00:00+03:00\",\n  \"arrival_time\": \"2027-10-04T16:00:00+03:00\",\n  \"airplane\": {{bulk_air_3}}\n}"
+        }
+      }
+    },
+    {
+      "name": "Airplane 4 (TC-B04)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('bulk_air_4', data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/airplanes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "airplanes/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tail_number\": \"TC-B04\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 154,\n  \"production_year\": 2019,\n  \"status\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Flight 4 (TK5004)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/flights/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "flights/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"flight_number\": \"TK5004\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-05T14:00:00+03:00\",\n  \"arrival_time\": \"2027-10-05T17:00:00+03:00\",\n  \"airplane\": {{bulk_air_4}}\n}"
+        }
+      }
+    },
+    {
+      "name": "Airplane 5 (TC-B05)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('bulk_air_5', data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/airplanes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "airplanes/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tail_number\": \"TC-B05\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 155,\n  \"production_year\": 2020,\n  \"status\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Flight 5 (TK5005)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/flights/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "flights/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"flight_number\": \"TK5005\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-06T10:00:00+03:00\",\n  \"arrival_time\": \"2027-10-06T13:00:00+03:00\",\n  \"airplane\": {{bulk_air_5}}\n}"
+        }
+      }
+    },
+    {
+      "name": "Airplane 6 (TC-B06)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('bulk_air_6', data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/airplanes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "airplanes/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tail_number\": \"TC-B06\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 156,\n  \"production_year\": 2021,\n  \"status\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Flight 6 (TK5006)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/flights/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "flights/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"flight_number\": \"TK5006\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-07T11:00:00+03:00\",\n  \"arrival_time\": \"2027-10-07T14:00:00+03:00\",\n  \"airplane\": {{bulk_air_6}}\n}"
+        }
+      }
+    },
+    {
+      "name": "Airplane 7 (TC-B07)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('bulk_air_7', data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/airplanes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "airplanes/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tail_number\": \"TC-B07\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 157,\n  \"production_year\": 2022,\n  \"status\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Flight 7 (TK5007)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/flights/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "flights/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"flight_number\": \"TK5007\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-08T12:00:00+03:00\",\n  \"arrival_time\": \"2027-10-08T15:00:00+03:00\",\n  \"airplane\": {{bulk_air_7}}\n}"
+        }
+      }
+    },
+    {
+      "name": "Airplane 8 (TC-B08)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('bulk_air_8', data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/airplanes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "airplanes/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tail_number\": \"TC-B08\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 158,\n  \"production_year\": 2015,\n  \"status\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Flight 8 (TK5008)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/flights/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "flights/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"flight_number\": \"TK5008\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-09T13:00:00+03:00\",\n  \"arrival_time\": \"2027-10-09T16:00:00+03:00\",\n  \"airplane\": {{bulk_air_8}}\n}"
+        }
+      }
+    },
+    {
+      "name": "Airplane 9 (TC-B09)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('bulk_air_9', data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/airplanes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "airplanes/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tail_number\": \"TC-B09\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 159,\n  \"production_year\": 2016,\n  \"status\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Flight 9 (TK5009)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/flights/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "flights/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"flight_number\": \"TK5009\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-10T14:00:00+03:00\",\n  \"arrival_time\": \"2027-10-10T17:00:00+03:00\",\n  \"airplane\": {{bulk_air_9}}\n}"
+        }
+      }
+    },
+    {
+      "name": "Airplane 10 (TC-B10)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('bulk_air_10', data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/airplanes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "airplanes/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tail_number\": \"TC-B10\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 160,\n  \"production_year\": 2017,\n  \"status\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Flight 10 (TK5010)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/flights/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "flights/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"flight_number\": \"TK5010\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-11T10:00:00+03:00\",\n  \"arrival_time\": \"2027-10-11T13:00:00+03:00\",\n  \"airplane\": {{bulk_air_10}}\n}"
+        }
+      }
+    },
+    {
+      "name": "Airplane 11 (TC-B11)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('bulk_air_11', data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/airplanes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "airplanes/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tail_number\": \"TC-B11\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 161,\n  \"production_year\": 2018,\n  \"status\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Flight 11 (TK5011)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/flights/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "flights/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"flight_number\": \"TK5011\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-12T11:00:00+03:00\",\n  \"arrival_time\": \"2027-10-12T14:00:00+03:00\",\n  \"airplane\": {{bulk_air_11}}\n}"
+        }
+      }
+    },
+    {
+      "name": "Airplane 12 (TC-B12)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('bulk_air_12', data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/airplanes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "airplanes/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tail_number\": \"TC-B12\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 162,\n  \"production_year\": 2019,\n  \"status\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Flight 12 (TK5012)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/flights/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "flights/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"flight_number\": \"TK5012\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-13T12:00:00+03:00\",\n  \"arrival_time\": \"2027-10-13T15:00:00+03:00\",\n  \"airplane\": {{bulk_air_12}}\n}"
+        }
+      }
+    },
+    {
+      "name": "Airplane 13 (TC-B13)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('bulk_air_13', data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/airplanes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "airplanes/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tail_number\": \"TC-B13\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 163,\n  \"production_year\": 2020,\n  \"status\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Flight 13 (TK5013)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/flights/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "flights/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"flight_number\": \"TK5013\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-14T13:00:00+03:00\",\n  \"arrival_time\": \"2027-10-14T16:00:00+03:00\",\n  \"airplane\": {{bulk_air_13}}\n}"
+        }
+      }
+    },
+    {
+      "name": "Airplane 14 (TC-B14)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('bulk_air_14', data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/airplanes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "airplanes/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tail_number\": \"TC-B14\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 164,\n  \"production_year\": 2021,\n  \"status\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Flight 14 (TK5014)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/flights/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "flights/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"flight_number\": \"TK5014\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-15T14:00:00+03:00\",\n  \"arrival_time\": \"2027-10-15T17:00:00+03:00\",\n  \"airplane\": {{bulk_air_14}}\n}"
+        }
+      }
+    },
+    {
+      "name": "Airplane 15 (TC-B15)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('bulk_air_15', data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/airplanes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "airplanes/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tail_number\": \"TC-B15\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 165,\n  \"production_year\": 2022,\n  \"status\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Flight 15 (TK5015)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/flights/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "flights/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"flight_number\": \"TK5015\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-16T10:00:00+03:00\",\n  \"arrival_time\": \"2027-10-16T13:00:00+03:00\",\n  \"airplane\": {{bulk_air_15}}\n}"
+        }
+      }
+    },
+    {
+      "name": "Airplane 16 (TC-B16)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('bulk_air_16', data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/airplanes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "airplanes/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tail_number\": \"TC-B16\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 166,\n  \"production_year\": 2015,\n  \"status\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Flight 16 (TK5016)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/flights/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "flights/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"flight_number\": \"TK5016\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-17T11:00:00+03:00\",\n  \"arrival_time\": \"2027-10-17T14:00:00+03:00\",\n  \"airplane\": {{bulk_air_16}}\n}"
+        }
+      }
+    },
+    {
+      "name": "Airplane 17 (TC-B17)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('bulk_air_17', data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/airplanes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "airplanes/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tail_number\": \"TC-B17\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 167,\n  \"production_year\": 2016,\n  \"status\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Flight 17 (TK5017)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/flights/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "flights/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"flight_number\": \"TK5017\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-18T12:00:00+03:00\",\n  \"arrival_time\": \"2027-10-18T15:00:00+03:00\",\n  \"airplane\": {{bulk_air_17}}\n}"
+        }
+      }
+    },
+    {
+      "name": "Airplane 18 (TC-B18)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('bulk_air_18', data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/airplanes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "airplanes/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tail_number\": \"TC-B18\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 168,\n  \"production_year\": 2017,\n  \"status\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Flight 18 (TK5018)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/flights/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "flights/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"flight_number\": \"TK5018\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-19T13:00:00+03:00\",\n  \"arrival_time\": \"2027-10-19T16:00:00+03:00\",\n  \"airplane\": {{bulk_air_18}}\n}"
+        }
+      }
+    },
+    {
+      "name": "Airplane 19 (TC-B19)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('bulk_air_19', data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/airplanes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "airplanes/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tail_number\": \"TC-B19\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 169,\n  \"production_year\": 2018,\n  \"status\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Flight 19 (TK5019)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/flights/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "flights/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"flight_number\": \"TK5019\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-20T14:00:00+03:00\",\n  \"arrival_time\": \"2027-10-20T17:00:00+03:00\",\n  \"airplane\": {{bulk_air_19}}\n}"
+        }
+      }
+    },
+    {
+      "name": "Airplane 20 (TC-B20)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('bulk_air_20', data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/airplanes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "airplanes/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tail_number\": \"TC-B20\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 170,\n  \"production_year\": 2019,\n  \"status\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Flight 20 (TK5020)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/flights/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "flights/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"flight_number\": \"TK5020\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-21T10:00:00+03:00\",\n  \"arrival_time\": \"2027-10-21T13:00:00+03:00\",\n  \"airplane\": {{bulk_air_20}}\n}"
+        }
+      }
+    },
+    {
+      "name": "Airplane 21 (TC-B21)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('bulk_air_21', data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/airplanes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "airplanes/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tail_number\": \"TC-B21\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 171,\n  \"production_year\": 2020,\n  \"status\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Flight 21 (TK5021)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/flights/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "flights/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"flight_number\": \"TK5021\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-22T11:00:00+03:00\",\n  \"arrival_time\": \"2027-10-22T14:00:00+03:00\",\n  \"airplane\": {{bulk_air_21}}\n}"
+        }
+      }
+    },
+    {
+      "name": "Airplane 22 (TC-B22)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('bulk_air_22', data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/airplanes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "airplanes/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tail_number\": \"TC-B22\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 172,\n  \"production_year\": 2021,\n  \"status\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Flight 22 (TK5022)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/flights/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "flights/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"flight_number\": \"TK5022\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-23T12:00:00+03:00\",\n  \"arrival_time\": \"2027-10-23T15:00:00+03:00\",\n  \"airplane\": {{bulk_air_22}}\n}"
+        }
+      }
+    },
+    {
+      "name": "Airplane 23 (TC-B23)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('bulk_air_23', data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/airplanes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "airplanes/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tail_number\": \"TC-B23\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 173,\n  \"production_year\": 2022,\n  \"status\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Flight 23 (TK5023)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/flights/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "flights/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"flight_number\": \"TK5023\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-24T13:00:00+03:00\",\n  \"arrival_time\": \"2027-10-24T16:00:00+03:00\",\n  \"airplane\": {{bulk_air_23}}\n}"
+        }
+      }
+    },
+    {
+      "name": "Airplane 24 (TC-B24)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('bulk_air_24', data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/airplanes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "airplanes/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tail_number\": \"TC-B24\",\n  \"model\": \"Boeing 737\",\n  \"capacity\": 174,\n  \"production_year\": 2015,\n  \"status\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Flight 24 (TK5024)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/flights/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "flights/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"flight_number\": \"TK5024\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-25T14:00:00+03:00\",\n  \"arrival_time\": \"2027-10-25T17:00:00+03:00\",\n  \"airplane\": {{bulk_air_24}}\n}"
+        }
+      }
+    },
+    {
+      "name": "Airplane 25 (TC-B25)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var data = pm.response.json();",
+              "pm.environment.set('bulk_air_25', data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/airplanes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "airplanes/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tail_number\": \"TC-B25\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 175,\n  \"production_year\": 2016,\n  \"status\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Flight 25 (TK5025)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/flights/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "flights/"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"flight_number\": \"TK5025\",\n  \"departure\": \"Istanbul\",\n  \"destination\": \"London\",\n  \"departure_time\": \"2027-10-26T10:00:00+03:00\",\n  \"arrival_time\": \"2027-10-26T13:00:00+03:00\",\n  \"airplane\": {{bulk_air_25}}\n}"
+        }
+      }
+    }
+  ]
+}

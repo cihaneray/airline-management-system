@@ -99,10 +99,7 @@ jobs:
           GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
           GCP_REGION: ${{ vars.GCP_REGION }}
         run: |
-          ssh -i ~/.ssh/deploy_key "$VM_USER"@"$VM_HOST" bash -s -- \
-            "$GCP_PROJECT_ID" \
-            "$GCP_REGION" \
-            "$IMAGE_TAG" <<'REMOTE'
+          ssh -i ~/.ssh/deploy_key "$VM_USER"@"$VM_HOST" "GCP_PROJECT_ID='$GCP_PROJECT_ID' GCP_REGION='$GCP_REGION' IMAGE_TAG='$IMAGE_TAG' bash -s" <<'REMOTE'
           
           set -Eeuo pipefail
           

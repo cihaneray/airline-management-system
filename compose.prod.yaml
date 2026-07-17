@@ -6,6 +6,7 @@ services:
     environment:
       POSTGRES_HOST: db
       POSTGRES_PORT: 5432
+      DJANGO_SETTINGS_MODULE: config.settings
     volumes:
       - static_data:/app/staticfiles
       - media_data:/app/media

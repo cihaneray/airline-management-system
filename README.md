@@ -780,10 +780,6 @@ Reservation codes are:
 - At least five characters
 - Read-only for API clients
 
-## Duplicate reservations
-
-The same passenger email cannot have more than one active reservation for the same flight.
-
 ## Departed flights
 
 A reservation cannot be created or reactivated for a flight that has already departed.
@@ -873,6 +869,7 @@ The repository includes:
 
 ```text
 postman/Airline Management API.postman_collection.json
+postman/Airline Bulk Insert.postman_collection.json
 postman/Airline Local.postman_environment.json
 ```
 
@@ -897,6 +894,12 @@ The Postman scripts automatically store:
 - `airplane_id`
 - `flight_id`
 - `reservation_id`
+
+> **Note**: In addition to the Create endpoints, running `List Airplanes`, `List Flights`, or `List Reservations` will automatically pick the ID of the first item in the response and assign it to the respective environment variable. This allows you to easily fetch existing items to test GET, PATCH, or DELETE requests without needing to create new ones first.
+
+## Bulk Insertion
+
+If you want to quickly populate the database with a large amount of test data, you can import and run the `Airline Bulk Insert.postman_collection.json` file. It will automatically generate 25 airplanes and 25 corresponding flights.
 
 For production testing, change:
 

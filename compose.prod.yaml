@@ -1,6 +1,6 @@
 services:
   api:
-    image: ${GCP_REGION}-docker.pkg.dev/${GCP_PROJECT_ID}/airline/api:${IMAGE_TAG:-latest}
+    image: ${GCP_REGION}-docker.pkg.dev/${GCP_PROJECT_ID}/airline/api:${IMAGE_TAG}
     env_file:
       - .env
     environment:

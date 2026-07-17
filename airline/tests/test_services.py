@@ -8,8 +8,13 @@ from airline.services import (
     cancel_reservation,
     create_reservation,
     generate_reservation_code,
+    generate_unique_reservation_code,
     get_flight_availability,
+    update_flight,
+    update_reservation,
 )
+from rest_framework.exceptions import ValidationError
+from unittest.mock import patch
 
 
 class ReservationServiceTests(TestCase):
@@ -79,3 +84,39 @@ class ReservationServiceTests(TestCase):
         self.assertEqual(data["occupied_seats"], 1)
         self.assertEqual(data["available_seats"], 0)
         self.assertTrue(data["is_full"])
+
+    def test_update_flight_service(self):
+        new_destination = "Berlin"
+        updated_flight = update_flight(
+            flight=self.flight,
+            validated_data={"destination": new_destination}
+        )
+        self.assertEqual(updated_flight.destination, new_destination)
+
+    def test_update_reservation_service(self):
+        reservation = Reservation.objects.create(
+            passenger_name="Old Name",
+            passenger_email="old@example.com",
+            reservation_code="OLD12345",
+            flight=self.flight,
+            status=True,
+        )
+        new_name = "New Name"
+        updated_reservation = update_reservation(
+            reservation=reservation,
+            validated_data={"passenger_name": new_name}
+        )
+        self.assertEqual(updated_reservation.passenger_name, new_name)
+
+    @patch("airline.services.generate_reservation_code")
+    def test_generate_unique_reservation_code_exhaustion(self, mock_generate):
+        mock_generate.return_value = "FIXED123"
+        Reservation.objects.create(
+            passenger_name="Fixed",
+            passenger_email="fixed@example.com",
+            reservation_code="FIXED123",
+            flight=self.flight,
+            status=True,
+        )
+        with self.assertRaisesMessage(ValidationError, "A unique reservation code could not be generated. Please try again."):
+            generate_unique_reservation_code()

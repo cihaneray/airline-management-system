@@ -181,3 +181,37 @@ class ReservationAPITests(AirlineAPITestCase):
             reservation.passenger_name,
             "Updated Passenger",
         )
+
+    def test_list_reservations(self):
+        self.create_reservation()
+
+        response = self.client.get(reverse("reservation-list"))
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        results = response.data.get("results", response.data)
+        self.assertEqual(len(results), 1)
+
+    def test_retrieve_reservation(self):
+        reservation = self.create_reservation()
+
+        response = self.client.get(
+            reverse("reservation-detail", args=[reservation.pk])
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["reservation_code"], reservation.reservation_code)
+
+    def test_update_reservation_flight(self):
+        reservation = self.create_reservation()
+        new_airplane = self.create_airplane(tail_number="TC-NEW")
+        new_flight = self.create_flight(airplane=new_airplane, flight_number="TK999")
+
+        response = self.client.patch(
+            reverse("reservation-detail", args=[reservation.pk]),
+            {"flight": new_flight.pk},
+            format="json",
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        reservation.refresh_from_db()
+        self.assertEqual(reservation.flight.pk, new_flight.pk)

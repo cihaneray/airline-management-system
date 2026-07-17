@@ -16,6 +16,10 @@ class FlightFilter(django_filters.FilterSet):
     departure_date_from = django_filters.DateTimeFilter(field_name='departure_time', lookup_expr='gte')
     departure_date_to = django_filters.DateTimeFilter(field_name='departure_time', lookup_expr='lte')
 
+    arrival_date = django_filters.DateFilter(method='filter_arrival_date')
+    arrival_date_from = django_filters.DateTimeFilter(field_name='arrival_time', lookup_expr='gte')
+    arrival_date_to = django_filters.DateTimeFilter(field_name='arrival_time', lookup_expr='lte')
+
     upcoming = django_filters.BooleanFilter(method='filter_upcoming')
     past = django_filters.BooleanFilter(method='filter_past')
     available = django_filters.BooleanFilter(method='filter_available')
@@ -28,6 +32,9 @@ class FlightFilter(django_filters.FilterSet):
             'departure_date',
             'departure_date_from',
             'departure_date_to',
+            'arrival_date',
+            'arrival_date_from',
+            'arrival_date_to',
             'airplane',
             'upcoming',
             'past',
@@ -46,6 +53,20 @@ class FlightFilter(django_filters.FilterSet):
         return queryset.filter(
             departure_time__gte=start,
             departure_time__lt=end
+        )
+
+    def filter_arrival_date(self, queryset, name, value):
+        current_timezone = timezone.get_current_timezone()
+
+        start = timezone.make_aware(
+            datetime.combine(value, time.min),
+            current_timezone
+        )
+        end = start + timedelta(days=1)
+
+        return queryset.filter(
+            arrival_time__gte=start,
+            arrival_time__lt=end
         )
 
     def filter_upcoming(self, queryset, name, value):

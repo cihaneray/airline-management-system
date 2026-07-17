@@ -226,3 +226,73 @@ class FlightAPITests(AirlineAPITestCase):
         results = response.data.get("results", response.data)
         self.assertEqual(len(results), 1)
         self.assertEqual(results[0]["flight_number"], "TK300")
+
+    def test_list_flights(self):
+        self.create_flight()
+
+        response = self.client.get(reverse("flight-list"))
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        results = response.data.get("results", response.data)
+        self.assertEqual(len(results), 1)
+
+    def test_retrieve_flight(self):
+        flight = self.create_flight()
+
+        response = self.client.get(
+            reverse("flight-detail", args=[flight.pk])
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["flight_number"], flight.flight_number)
+
+    def test_delete_flight_success(self):
+        flight = self.create_flight()
+
+        response = self.client.delete(
+            reverse("flight-detail", args=[flight.pk])
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertFalse(Flight.objects.filter(pk=flight.pk).exists())
+
+    def test_delete_flight_with_reservations_rejected(self):
+        flight = self.create_flight()
+        self.create_reservation(flight=flight)
+
+        response = self.client.delete(
+            reverse("flight-detail", args=[flight.pk])
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_409_CONFLICT)
+        self.assertTrue(Flight.objects.filter(pk=flight.pk).exists())
+
+    def test_flight_reservations_action_status_filter(self):
+        flight = self.create_flight()
+        self.create_reservation(flight=flight, status=True, reservation_code="RES01")
+        self.create_reservation(flight=flight, status=False, passenger_email="cancelled@example.com", reservation_code="RES02")
+
+        response = self.client.get(
+            reverse("flight-reservations", args=[flight.pk]),
+            {"status": "true"}
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        results = response.data.get("results", response.data)
+        self.assertEqual(len(results), 1)
+        self.assertTrue(results[0]["status"])
+
+    def test_flight_reservations_action_search(self):
+        flight = self.create_flight()
+        self.create_reservation(flight=flight, passenger_name="Alice Smith", passenger_email="alice@example.com", reservation_code="RES03")
+        self.create_reservation(flight=flight, passenger_name="Bob Jones", passenger_email="bob@example.com", reservation_code="RES04")
+
+        response = self.client.get(
+            reverse("flight-reservations", args=[flight.pk]),
+            {"search": "Alice"}
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        results = response.data.get("results", response.data)
+        self.assertEqual(len(results), 1)
+        self.assertEqual(results[0]["passenger_name"], "Alice Smith")

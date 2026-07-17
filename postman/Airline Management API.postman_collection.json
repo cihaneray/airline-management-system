@@ -412,13 +412,35 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/flights/?departure__icontains=istanbul&ordering=departure_time",
+              "raw": "{{base_url}}/flights/?departure=Istanbul&destination=London&departure_date=2027-08-10&arrival_date=2027-08-10",
               "host": [
                 "{{base_url}}"
               ],
               "path": [
                 "flights",
-                "?departure__icontains=istanbul&ordering=departure_time"
+                ""
+              ],
+              "query": [
+                {
+                  "key": "departure",
+                  "value": "Istanbul",
+                  "description": "Departure location"
+                },
+                {
+                  "key": "destination",
+                  "value": "London",
+                  "description": "Arrival location"
+                },
+                {
+                  "key": "departure_date",
+                  "value": "2027-08-10",
+                  "description": "Date of departure (YYYY-MM-DD)"
+                },
+                {
+                  "key": "arrival_date",
+                  "value": "2027-08-10",
+                  "description": "Date of arrival (YYYY-MM-DD)"
+                }
               ]
             }
           },

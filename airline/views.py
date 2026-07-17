@@ -81,6 +81,11 @@ class AirplaneViewSet(viewsets.ModelViewSet):
             .order_by('tail_number')
         )
 
+    def filter_queryset(self, queryset):
+        if self.action == 'flights':
+            return queryset
+        return super().filter_queryset(queryset)
+
     @action(detail=True, methods=['get'], url_path='flights')
     def flights(self, request, pk=None):
         """
@@ -231,6 +236,11 @@ class FlightViewSet(viewsets.ModelViewSet):
             )
             .order_by('departure_time')
         )
+
+    def filter_queryset(self, queryset):
+        if self.action in ['reservations', 'availability']:
+            return queryset
+        return super().filter_queryset(queryset)
 
     @action(detail=True, methods=['get'], url_path='reservations')
     def reservations(self, request, pk=None):

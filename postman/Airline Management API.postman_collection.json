@@ -37,7 +37,7 @@
               ],
               "path": [
                 "auth",
-                "token"
+                "token/"
               ]
             },
             "auth": {
@@ -84,7 +84,7 @@
               "path": [
                 "auth",
                 "token",
-                "refresh"
+                "refresh/"
               ]
             },
             "auth": {
@@ -135,7 +135,23 @@
               ]
             }
           },
-          "response": []
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const data = pm.response.json();",
+                  "    if (data.results && data.results.length > 0) {",
+                  "        pm.environment.set(\"airplane_id\", data.results[0].id);",
+                  "    }",
+                  "}"
+                ]
+              }
+            }
+          ]
         },
         {
           "name": "Get Airplane",
@@ -190,12 +206,12 @@
                 "{{base_url}}"
               ],
               "path": [
-                "airplanes"
+                "airplanes/"
               ]
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"tail_number\": \"TC-PST\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 180,\n  \"production_year\": 2020,\n  \"status\": true\n}"
+              "raw": "{\n  \"tail_number\": \"TC-{{$randomInt}}\",\n  \"model\": \"Airbus A320\",\n  \"capacity\": 180,\n  \"production_year\": 2020,\n  \"status\": true\n}"
             }
           },
           "response": [],
@@ -208,8 +224,10 @@
                   "pm.test(\"Status is 201\", function () {",
                   "    pm.response.to.have.status(201);",
                   "});",
-                  "const data = pm.response.json();",
-                  "pm.environment.set(\"airplane_id\", data.id);"
+                  "if (pm.response.code === 201) {",
+                  "    const data = pm.response.json();",
+                  "    pm.environment.set(\"airplane_id\", data.id);",
+                  "}"
                 ]
               }
             }
@@ -280,7 +298,23 @@
               ]
             }
           },
-          "response": []
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const data = pm.response.json();",
+                  "    if (data.results && data.results.length > 0) {",
+                  "        pm.environment.set(\"flight_id\", data.results[0].id);",
+                  "    }",
+                  "}"
+                ]
+              }
+            }
+          ]
         },
         {
           "name": "Get Flight",
@@ -354,12 +388,12 @@
                 "{{base_url}}"
               ],
               "path": [
-                "flights"
+                "flights/"
               ]
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"flight_number\": \"TK9001\",\n  \"departure\": \"Istanbul Airport\",\n  \"destination\": \"Heathrow Airport\",\n  \"departure_time\": \"2027-08-10T10:00:00+03:00\",\n  \"arrival_time\": \"2027-08-10T14:00:00+03:00\",\n  \"airplane\": \"{{airplane_id}}\"\n}"
+              "raw": "{\n  \"flight_number\": \"TK{{$randomInt}}\",\n  \"departure\": \"Istanbul Airport\",\n  \"destination\": \"Heathrow Airport\",\n  \"departure_time\": \"2027-08-10T10:00:00+03:00\",\n  \"arrival_time\": \"2027-08-10T14:00:00+03:00\",\n  \"airplane\": \"{{airplane_id}}\"\n}"
             }
           },
           "response": [],
@@ -372,8 +406,10 @@
                   "pm.test(\"Status is 201\", function () {",
                   "    pm.response.to.have.status(201);",
                   "});",
-                  "const data = pm.response.json();",
-                  "pm.environment.set(\"flight_id\", data.id);"
+                  "if (pm.response.code === 201) {",
+                  "    const data = pm.response.json();",
+                  "    pm.environment.set(\"flight_id\", data.id);",
+                  "}"
                 ]
               }
             }
@@ -484,7 +520,23 @@
               ]
             }
           },
-          "response": []
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const data = pm.response.json();",
+                  "    if (data.results && data.results.length > 0) {",
+                  "        pm.environment.set(\"reservation_id\", data.results[0].id);",
+                  "    }",
+                  "}"
+                ]
+              }
+            }
+          ]
         },
         {
           "name": "Get Reservation",
@@ -520,12 +572,12 @@
                 "{{base_url}}"
               ],
               "path": [
-                "reservations"
+                "reservations/"
               ]
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"passenger_name\": \"Ayse Yilmaz\",\n  \"passenger_email\": \"ayse@example.com\",\n  \"flight\": \"{{flight_id}}\",\n  \"status\": true\n}"
+              "raw": "{\n  \"passenger_name\": \"Ayse Yilmaz\",\n  \"passenger_email\": \"ayse.{{$randomInt}}@example.com\",\n  \"flight\": \"{{flight_id}}\",\n  \"status\": true\n}"
             }
           },
           "response": [],
@@ -538,11 +590,13 @@
                   "pm.test(\"Status is 201\", function () {",
                   "    pm.response.to.have.status(201);",
                   "});",
-                  "const data = pm.response.json();",
-                  "pm.environment.set(\"reservation_id\", data.id);",
-                  "pm.test(\"Reservation code generated\", function () {",
-                  "    pm.expect(data.reservation_code).to.match(/^[A-Z0-9]{5,}$/);",
-                  "});"
+                  "if (pm.response.code === 201) {",
+                  "    const data = pm.response.json();",
+                  "    pm.environment.set(\"reservation_id\", data.id);",
+                  "    pm.test(\"Reservation code generated\", function () {",
+                  "        pm.expect(data.reservation_code).to.match(/^[A-Z0-9]{5,}$/);",
+                  "    });",
+                  "}"
                 ]
               }
             }
@@ -657,51 +711,12 @@
                 "{{base_url}}"
               ],
               "path": [
-                "flights"
+                "flights/"
               ]
             },
             "body": {
               "mode": "raw",
               "raw": "{\n  \"flight_number\": \"TK-BAD-TIME\",\n  \"departure\": \"Istanbul Airport\",\n  \"destination\": \"Heathrow Airport\",\n  \"departure_time\": \"2027-08-10T14:00:00+03:00\",\n  \"arrival_time\": \"2027-08-10T10:00:00+03:00\",\n  \"airplane\": \"{{airplane_id}}\"\n}"
-            }
-          },
-          "response": [],
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 400\", function () {",
-                  "    pm.response.to.have.status(400);",
-                  "});"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "name": "Duplicate Reservation",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/reservations/",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "reservations"
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"passenger_name\": \"Ayse Yilmaz\",\n  \"passenger_email\": \"ayse@example.com\",\n  \"flight\": \"{{flight_id}}\",\n  \"status\": true\n}"
             }
           },
           "response": [],

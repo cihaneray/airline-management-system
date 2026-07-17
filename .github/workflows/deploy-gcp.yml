@@ -7,8 +7,6 @@ on:
     types:
       - completed
 
-  workflow_dispatch:
-
 permissions:
   contents: read
   id-token: write
@@ -54,7 +52,7 @@ jobs:
       - name: Checkout tested commit
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.workflow_run.head_sha }}
+          ref: ${{ steps.deployment.outputs.sha }}
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v3
@@ -138,9 +136,18 @@ jobs:
         run: |
           set -Eeuo pipefail
           
-          ssh -i ~/.ssh/deploy_key "$VM_USER"@"$VM_HOST" "GCP_PROJECT_ID='$GCP_PROJECT_ID' GCP_REGION='$GCP_REGION' IMAGE_TAG='$IMAGE_TAG' bash -s" <<'REMOTE'
+          ssh -i ~/.ssh/deploy_key "$VM_USER"@"$VM_HOST" bash -s -- \
+            "$GCP_PROJECT_ID" \
+            "$GCP_REGION" \
+            "$IMAGE_TAG" <<'REMOTE'
           
           set -Eeuo pipefail
+          
+          GCP_PROJECT_ID="$1"
+          GCP_REGION="$2"
+          export IMAGE_TAG="$3"
+          export GCP_PROJECT_ID
+          export GCP_REGION
           
           cd /opt/airline
           
@@ -176,8 +183,8 @@ jobs:
           
           gcloud auth configure-docker "${GCP_REGION}-docker.pkg.dev" --quiet
           
-          docker compose \ 
-            --env-file .env \ 
+          docker compose \
+            --env-file .env \
             --env-file .deploy.env \
             -f compose.prod.yaml \
             config \
@@ -190,8 +197,8 @@ jobs:
           echo "Waiting for PostgreSQL health check..." 
           for attempt in $(seq 1 30); do
             DB_STATUS="$( 
-              docker inspect \ 
-                --format='{{if .State.Health}}{{.State.Health.Status}}{{else}}{{.State.Status}}{{end}}' \ 
+              docker inspect \
+                --format='{{if .State.Health}}{{.State.Health.Status}}{{else}}{{.State.Status}}{{end}}' \
                 airline-db-1 2>/dev/null || true 
             )"
             
@@ -202,10 +209,10 @@ jobs:
           
             if [ "$attempt" -eq 30 ]; then 
               echo "PostgreSQL did not become healthy." 
-              docker compose \ 
-                --env-file .env \ 
-                --env-file .deploy.env \ 
-                -f compose.prod.yaml \ 
+              docker compose \
+                --env-file .env \
+                --env-file .deploy.env \
+                -f compose.prod.yaml \
                 logs --tail=200 db 
               exit 1 
             fi
